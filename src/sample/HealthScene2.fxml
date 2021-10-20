@@ -8,37 +8,38 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HealthWorkController">
-   <children>
-      <Label fx:id="welcomeTex" layoutX="39.0" layoutY="35.0" text="Welcome">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="42.0" layoutY="152.0" text="Looking for a patient">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="89.0" layoutY="214.0" text="Patient First Name">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="90.0" layoutY="251.0" text="Patient Last Name">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="90.0" layoutY="287.0" text="Patient Birthday">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="FirstName" layoutX="232.0" layoutY="212.0" />
-      <TextField fx:id="LastName" layoutX="232.0" layoutY="249.0" />
-      <TextField fx:id="Birthday" layoutX="232.0" layoutY="285.0" />
-      <Button layoutX="203.0" layoutY="327.0" mnemonicParsing="false" onAction="#lookingForPatient" text="Enter" />
-      <Label fx:id="errorMessage" layoutX="175.0" layoutY="179.0" textFill="#f50a0a" />
-      <Button layoutX="13.0" layoutY="340.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-   </children>
+    <children>
+        <Label fx:id="welcomeTex" layoutX="39.0" layoutY="35.0" text="Welcome">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="42.0" layoutY="152.0" text="Looking for a patient">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="89.0" layoutY="214.0" text="Patient First Name">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="90.0" layoutY="251.0" text="Patient Last Name">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="90.0" layoutY="287.0" text="Patient Birthday">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="FirstName" layoutX="232.0" layoutY="212.0" />
+        <TextField fx:id="LastName" layoutX="232.0" layoutY="249.0" />
+        <TextField fx:id="Birthday" layoutX="232.0" layoutY="285.0" />
+        <Button layoutX="203.0" layoutY="327.0" mnemonicParsing="false" onAction="#lookingForPatient" text="Enter" />
+        <Label fx:id="errorMessage" layoutX="175.0" layoutY="179.0" textFill="#f50a0a" />
+        <Button layoutX="13.0" layoutY="340.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Label layoutX="353.0" layoutY="89.0" text="Sample patient: Yuan Bo 000000" textFill="#eb0707" />
+    </children>
 </AnchorPane>

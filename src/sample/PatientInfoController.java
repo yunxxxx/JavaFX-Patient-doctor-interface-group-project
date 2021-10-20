@@ -16,7 +16,6 @@ public class PatientInfoController {
     Label patientName;
 
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -54,7 +53,7 @@ public class PatientInfoController {
 //        patientInfoController.displayPatient(First, Last, BirthdayID);
 
         root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -62,20 +61,19 @@ public class PatientInfoController {
 
     public void enter(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
 
-
-        public void logout(ActionEvent event) throws IOException {
+    public void logout(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    }
+}

@@ -70,14 +70,13 @@ public class HealthWorkController {
             PatientInfoController patientInfoController = loader.getController();
             patientInfoController.displayPatient(First, Last, BirthdayID);
 
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }
-        else if (workNum == 212345){
+        } else if (workNum == 212345) {
             root = FXMLLoader.load(getClass().getResource("HealthScene5.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -86,7 +85,7 @@ public class HealthWorkController {
 
     public void logout(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

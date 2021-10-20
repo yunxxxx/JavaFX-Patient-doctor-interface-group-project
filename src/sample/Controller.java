@@ -24,7 +24,7 @@ public class Controller {
 
     public void switchToMainScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -32,7 +32,7 @@ public class Controller {
 
     public void switchToHealthScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("HealthScene1.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -61,7 +61,7 @@ public class Controller {
         HealthWorkController healthWorkController = loader.getController();
         healthWorkController.displayName(ID);
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
