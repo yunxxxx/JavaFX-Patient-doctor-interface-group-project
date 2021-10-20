@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientInfoController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="History:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="41.0" text="previous health issues:" />
+      <TextArea layoutX="16.0" layoutY="60.0" prefHeight="75.0" prefWidth="157.0" />
+      <Label layoutX="185.0" layoutY="41.0" text="previously prescribed medications:" />
+      <TextArea layoutX="185.0" layoutY="60.0" prefHeight="75.0" prefWidth="183.0" />
+      <Label layoutX="402.0" layoutY="41.0" text="history of immunication:" />
+      <TextArea layoutX="402.0" layoutY="60.0" prefHeight="75.0" prefWidth="170.0" />
+      <Label layoutX="16.0" layoutY="142.0" text="Enter the infomation below:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="183.0" text="Alleges:" />
+      <Label layoutX="256.0" layoutY="183.0" text="Health concerns:" />
+      <TextArea layoutX="57.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
+      <TextArea layoutX="351.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
+      <Label layoutX="23.0" layoutY="256.0" text="Note:" />
+      <TextArea layoutX="57.0" layoutY="256.0" prefHeight="91.0" prefWidth="282.0" />
+      <Button layoutX="467.0" layoutY="281.0" mnemonicParsing="false" onAction="#enter" prefHeight="41.0" prefWidth="61.0" text="Enter" />
+      <Button layoutX="11.0" layoutY="347.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+   </children>
+</AnchorPane>
