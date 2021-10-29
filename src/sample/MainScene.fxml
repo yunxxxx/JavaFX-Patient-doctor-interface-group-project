@@ -22,7 +22,7 @@
                 <Font size="18.0"/>
             </font>
         </Button>
-        <Button layoutX="361.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToMainScene"
+        <Button layoutX="361.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToPatientScene1"
                 text="I am a patient">
             <font>
                 <Font size="18.0"/>

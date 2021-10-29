@@ -38,6 +38,14 @@ public class Controller {
         stage.show();
     }
 
+    public void switchToPatientScene1(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PatientScene1.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void employeeLogin(ActionEvent event) throws IOException {
 
         String userID = employeesNum.getText();
