@@ -15,6 +15,10 @@ import java.io.IOException;
 public class Controller {
     @FXML
     TextField employeesNum;
+    TextField patientFirst;
+    TextField patientLast;
+    TextField patientBirth;
+    
     @FXML
     Label errorMessage;
 
@@ -40,6 +44,22 @@ public class Controller {
 
     public void switchToPatientScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PatientScene1.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void switchToPatientScene2(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PatientScene2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void switchToPatientScene3(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PatientScene3.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -74,6 +94,38 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
 
+    }
+    
+    public void patientLogin(ActionEvent event) throws IOException {
+    	
+    	String firstName = patientFirst.getText();
+    	String lastName = patientLast.getText();
+    	String enterBirthday = patientBirth.getText();
+    	
+    	Integer birthday;
+        try {
+            birthday = Integer.parseInt(enterBirthday);
+        } catch (NumberFormatException e) {
+            errorMessage.setText("Please Enter as a Number (XXXXXX)");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientScene1.fxml"));
+    	root = loader.load();
+    	PatientInfoController patientInfoController = loader.getController();
+    	
+    	boolean found = false;
+        found = patientInfoController.searchPatient(firstName, lastName, birthday);
+        
+        if (!found) {
+                errorMessage.setText("Patient not found");
+                return;
+        }
+        patientInfoController.displayPatient(firstName, lastName, birthday);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	scene = new Scene(root);
+    	stage.setScene(scene);
+    	stage.show();
     }
 
 }

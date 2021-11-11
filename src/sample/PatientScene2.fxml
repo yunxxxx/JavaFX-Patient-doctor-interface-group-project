@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientInfoController">
+   <children>
+      <Label layoutX="59.0" layoutY="35.0" text="Sign Up">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="80.0" text="First Name:" />
+      <Label layoutX="65.0" layoutY="100.0" text="Last Name:" />
+      <Label layoutX="65.0" layoutY="120.0" text="Date of Birth:" />
+      <Label layoutX="65.0" layoutY="140.0" text="Address:" />
+      <Label layoutX="65.0" layoutY="160.0" text="Phone Number:" />
+      <Label layoutX="65.0" layoutY="180.0" text="Email:" />
+      <Label layoutX="65.0" layoutY="200.0" text="Primary Contact Name:" />
+      <Label layoutX="85.0" layoutY="220.0" text="Relation to Patient:" />
+      <Label layoutX="85.0" layoutY="240.0" text="Contact Number:" />
+      <Label layoutX="65.0" layoutY="260.0" text="Insurance Provider:" />
+      <Label layoutX="85.0" layoutY="280.0" text="Member ID:" />
+      <Label layoutX="85.0" layoutY="300.0" text="Group Number:" />
+      <Button layoutX="184.0" layoutY="334.0" mnemonicParsing="false" onAction="#finishSignUp" text="Click to Finish" />
+      <TextField layoutX="130.0" layoutY="80.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="128.0" layoutY="100.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="137.0" layoutY="121.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="115.0" layoutY="141.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="152.0" layoutY="160.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="99.0" layoutY="180.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="193.0" layoutY="200.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="187.0" layoutY="220.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="179.0" layoutY="240.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="170.0" layoutY="260.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="150.0" layoutY="280.0" minHeight="-Infinity" prefHeight="18.0" />
+      <TextField layoutX="170.0" layoutY="300.0" minHeight="-Infinity" prefHeight="18.0" />
+      <Button layoutX="354.0" layoutY="334.0" mnemonicParsing="false" onAction="#logout" text="Back to Main Menu" />
+   </children>
+</AnchorPane>

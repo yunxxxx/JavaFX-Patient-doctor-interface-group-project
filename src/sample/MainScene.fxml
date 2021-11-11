@@ -7,25 +7,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Label layoutX="81.0" layoutY="41.0" text="Welecome to XX Pediatric Doctor's Office">
+        <Label layoutX="81.0" layoutY="41.0" text="Welcome to XX Pediatric Doctor's Office">
             <font>
-                <Font size="24.0"/>
+                <Font size="24.0" />
             </font>
         </Label>
-        <Button layoutX="81.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToHealthScene1"
-                text="I am a health worker">
+        <Button layoutX="81.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToHealthScene1" text="I am a health worker">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="361.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToPatientScene1"
-                text="I am a patient">
+        <Button layoutX="361.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToPatientScene1" text="I am a patient">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Button>
     </children>
