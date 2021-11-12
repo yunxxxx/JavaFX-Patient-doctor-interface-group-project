@@ -91,4 +91,8 @@ public class HealthWorkController {
         stage.show();
     }
 
+    public void recordInformation(ActionEvent event) throws IOException {
+
+    }
+
 }
