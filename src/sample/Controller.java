@@ -95,37 +95,5 @@ public class Controller {
         stage.show();
 
     }
-    
-    public void patientLogin(ActionEvent event) throws IOException {
-    	
-    	String firstName = patientFirst.getText();
-    	String lastName = patientLast.getText();
-    	String enterBirthday = patientBirth.getText();
-    	
-    	Integer birthday;
-        try {
-            birthday = Integer.parseInt(enterBirthday);
-        } catch (NumberFormatException e) {
-            errorMessage.setText("Please Enter as a Number (XXXXXX)");
-            return;
-        }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientScene1.fxml"));
-    	root = loader.load();
-    	PatientInfoController patientInfoController = loader.getController();
-    	
-    	boolean found = false;
-        found = patientInfoController.searchPatient(firstName, lastName, birthday);
-        
-        if (!found) {
-                errorMessage.setText("Patient not found");
-                return;
-        }
-        patientInfoController.displayPatient(firstName, lastName, birthday);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	scene = new Scene(root);
-    	stage.setScene(scene);
-    	stage.show();
-    }
 
 }
