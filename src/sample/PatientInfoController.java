@@ -1,20 +1,48 @@
 package sample;
 
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
+
 
 public class PatientInfoController {
     @FXML
-    Label patientName;
+    TextField patientFirst;
 
+    @FXML
+    TextField patientLast;
+
+    @FXML
+    TextField patientBirth;
+
+    @FXML
+    TextField patientWeight;
+
+    @FXML
+    TextField patientHeight;
+
+    @FXML
+    TextField patientBodyTemp;
+
+    @FXML
+    TextField patientBloodPressure;
+
+    @FXML
+    Label errorMessage;
+
+    @FXML
+    Label patientName;
 
     private Stage stage;
     private Scene scene;
@@ -24,35 +52,25 @@ public class PatientInfoController {
 
     public void displayPatient(String First, String Last, Integer Birthday) {
         this.Birthday = Birthday;
-        patientName.setText("Enter" + First + " " + Last + "'s basic information");
+        patientName.setText("Enter " + First + " " + Last + "'s basic information");
     }
 
-    public void BasicInfo(ActionEvent event) throws IOException {
-//        String weight = FirstName.getText();
-//        String height = LastName.getText();
-//        String bodyTemp = Birthday.getText();
-//        String bodyPres = Birthday.getText();
-//
-//        Integer weight;
-//        try {
-//            weight = Integer.parseInt(BirthdayNum);
-//        } catch (NumberFormatException e) {
-//            errorMessage.setText("Please Enter a Number at the birthday");
-//            return;
-//        }
-//
-//        //just use Yuan Bo 000000 as an example patient for now
-//        if (!BirthdayID.equals(000000) && !First.equals("Yuan") && !Last.equals("Bo")) {
-//            errorMessage.setText("Couldn't find the patient");
-//            return;
-//        }
+    public void enterHealth4(ActionEvent event) throws IOException {
+    	String weight = patientWeight.getText();
+    	String height = patientHeight.getText();
+    	String bt = patientBodyTemp.getText();
+    	String bp = patientBloodPressure.getText();
 
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene3.fxml"));
-//        root = loader.load();
-//        PatientInfoController patientInfoController = loader.getController();
-//        patientInfoController.displayPatient(First, Last, BirthdayID);
+    	FileWriter nurseInfo = new FileWriter("nurseinfo.txt", true);
+    	nurseInfo.write(weight + " ");
+    	nurseInfo.write(height + " ");
+    	nurseInfo.write(bt + " ");
+    	nurseInfo.write(bp + "\n");
+    	nurseInfo.close();
 
-        root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene4.fxml"));
+    	root = loader.load();
+   //   root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -60,11 +78,31 @@ public class PatientInfoController {
     }
 
     public void enter(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    	String First = patientFirst.getText();
+    	String Last = patientLast.getText();
+    	String BirthdayNum = patientBirth.getText();
+    	Integer birthday;
+    	try {
+            birthday = Integer.parseInt(BirthdayNum);
+        } catch (NumberFormatException e) {
+            errorMessage.setText("Please Enter a Number at the birthday (XXXXXX)");
+            return;
+        }
+
+    	boolean found;
+    	found = searchPatient(First, Last, birthday);
+
+    	if(found) {
+    		root = FXMLLoader.load(getClass().getResource("PatientScene3.fxml"));
+    		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        	scene = new Scene(root);
+        	stage.setScene(scene);
+        	stage.show();
+    	}
+
+    	else {
+    		return;
+    	}
     }
 
 
@@ -76,4 +114,32 @@ public class PatientInfoController {
         stage.show();
     }
 
+
+    public void signUp(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PatientScene2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void finishSignUp(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PatientScene1.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public boolean searchPatient(String First, String Last, Integer Birthday) throws IOException{
+    	if(First.equals("Yuan") && Last.equals("Bo") && Birthday == 0000000)
+    		return true;
+    	else
+    		errorMessage.setText("Patient does not exist");
+    		return false;
+    }
+
 }
+
+
+

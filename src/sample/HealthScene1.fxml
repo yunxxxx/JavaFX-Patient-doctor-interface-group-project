@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.Controller">
     <children>
         <Label layoutX="172.0" layoutY="102.0" text="Enter Your Employess Number">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Button layoutX="68.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchToMainScene" text="Back To Main">
+        <Button layoutX="68.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchToMainScene"
+                text="Back To Main">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <TextField fx:id="employeesNum" layoutX="226.0" layoutY="163.0" />
-        <Button fx:id="employeeLoginBut" layoutX="274.0" layoutY="212.0" mnemonicParsing="false" onAction="#employeeLogin" text="Login" />
-        <Label fx:id="errorMessage" layoutX="172.0" layoutY="136.0" textFill="#e40000" />
-        <Label layoutX="40.0" layoutY="155.0" text="Test Number:" textFill="#e41010" />
-        <Label layoutX="38.0" layoutY="180.0" text="Nurse: 112345" textFill="#e10e0e" />
-        <Label layoutX="36.0" layoutY="204.0" text="Doctor: 212345" textFill="#da0e0e" />
+        <TextField fx:id="employeesNum" layoutX="226.0" layoutY="163.0"/>
+        <Button fx:id="employeeLoginBut" layoutX="274.0" layoutY="212.0" mnemonicParsing="false"
+                onAction="#employeeLogin" text="Login"/>
+        <Label fx:id="errorMessage" layoutX="172.0" layoutY="136.0" textFill="#e40000"/>
+        <Label layoutX="40.0" layoutY="155.0" text="Test Number:" textFill="#e41010"/>
+        <Label layoutX="38.0" layoutY="180.0" text="Nurse: 112345" textFill="#e10e0e"/>
+        <Label layoutX="36.0" layoutY="204.0" text="Doctor: 212345" textFill="#da0e0e"/>
     </children>
 </AnchorPane>
