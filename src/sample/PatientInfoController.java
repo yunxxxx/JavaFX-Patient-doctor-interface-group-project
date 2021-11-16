@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,6 +27,18 @@ public class PatientInfoController {
     TextField patientBirth;
     
     @FXML
+    TextField patientWeight;
+    
+    @FXML
+    TextField patientHeight;
+    
+    @FXML
+    TextField patientBodyTemp;
+    
+    @FXML
+    TextField patientBloodPressure;
+    
+    @FXML
     Label errorMessage;
 
     @FXML
@@ -39,17 +52,31 @@ public class PatientInfoController {
 
     public void displayPatient(String First, String Last, Integer Birthday) {
         this.Birthday = Birthday;
-        patientName.setText("Enter" + First + " " + Last + "'s basic information");
+        patientName.setText("Enter " + First + " " + Last + "'s basic information");
     }
 
     public void enterHealth4(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
+    	String weight = patientWeight.getText();
+    	String height = patientHeight.getText();
+    	String bt = patientBodyTemp.getText();
+    	String bp = patientBloodPressure.getText();
+    	
+    	FileWriter nurseInfo = new FileWriter("C:\\Users\\bloxx\\OneDrive\\Documents\\health\\nurseinfo.txt", true);
+    	nurseInfo.write(weight + " ");
+    	nurseInfo.write(height + " ");
+    	nurseInfo.write(bt + " ");
+    	nurseInfo.write(bp + "\n");
+    	nurseInfo.close();
+    	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene4.fxml"));
+    	root = loader.load();
+   //   root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
+    
     public void enter(ActionEvent event) throws IOException {
     	String First = patientFirst.getText();
     	String Last = patientLast.getText();

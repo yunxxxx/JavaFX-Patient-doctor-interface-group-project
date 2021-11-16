@@ -27,10 +27,10 @@
         </Label>
         <Label layoutX="16.0" layoutY="183.0" text="Alleges:" />
         <Label layoutX="256.0" layoutY="183.0" text="Health concerns:" />
-        <TextArea layoutX="57.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
-        <TextArea layoutX="351.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
+        <TextArea fx:id="patientAllergies" layoutX="57.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
+        <TextArea fx:id="patientHealthConcerns" layoutX="351.0" layoutY="183.0" prefHeight="63.0" prefWidth="170.0" />
         <Label layoutX="23.0" layoutY="256.0" text="Note:" />
-        <TextArea layoutX="57.0" layoutY="256.0" prefHeight="91.0" prefWidth="282.0" />
+        <TextArea fx:id="patientNote" layoutX="57.0" layoutY="256.0" prefHeight="91.0" prefWidth="282.0" />
         <Button layoutX="467.0" layoutY="281.0" mnemonicParsing="false" onAction="#recordInformation" prefHeight="41.0" prefWidth="61.0" text="Enter" />
         <Button layoutX="11.0" layoutY="347.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </children>

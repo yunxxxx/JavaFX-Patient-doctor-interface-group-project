@@ -34,10 +34,10 @@
                 <Font size="18.0" />
             </font>
         </Label>
-        <TextField layoutX="235.0" layoutY="144.0" />
-        <TextField layoutX="235.0" layoutY="188.0" />
-        <TextField layoutX="235.0" layoutY="224.0" />
-        <TextField layoutX="235.0" layoutY="265.0" />
+        <TextField fx:id="patientWeight" layoutX="235.0" layoutY="144.0" />
+        <TextField fx:id="patientHeight" layoutX="235.0" layoutY="188.0" />
+        <TextField fx:id="patientBodyTemp" layoutX="235.0" layoutY="224.0" />
+        <TextField fx:id="patientBloodPressure" layoutX="235.0" layoutY="265.0" />
         <Button layoutX="209.0" layoutY="307.0" mnemonicParsing="false" onAction="#enterHealth4" text="Enter" />
         <Button layoutX="14.0" layoutY="343.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </children>
