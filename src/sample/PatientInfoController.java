@@ -25,6 +25,33 @@ public class PatientInfoController {
 
     @FXML
     TextField patientBirth;
+    
+    @FXML
+    TextField patientAddr;   
+    
+    @FXML
+    TextField patientNum;  
+    
+    @FXML
+    TextField patientEmail; 
+    
+    @FXML
+    TextField patientPCN;
+    
+    @FXML
+    TextField patientRelation;
+    
+    @FXML
+    TextField patientCN;
+    
+    @FXML
+    TextField patientInsurance;
+    
+    @FXML
+    TextField patientMemId;
+    
+    @FXML
+    TextField patientGN;
 
     @FXML
     TextField patientWeight;
@@ -49,6 +76,12 @@ public class PatientInfoController {
     private Parent root;
 
     private int Birthday;
+    
+    private int patientIndex = 1;
+    
+//     public void newPatient() throws IOException {
+        
+//     }
 
     public void displayPatient(String First, String Last, Integer Birthday) {
         this.Birthday = Birthday;
@@ -78,6 +111,7 @@ public class PatientInfoController {
     }
 
     public void enter(ActionEvent event) throws IOException {
+    	patientIndex = 1;
     	String First = patientFirst.getText();
     	String Last = patientLast.getText();
     	String BirthdayNum = patientBirth.getText();
@@ -85,22 +119,64 @@ public class PatientInfoController {
     	try {
             birthday = Integer.parseInt(BirthdayNum);
         } catch (NumberFormatException e) {
-            errorMessage.setText("Please Enter a Number at the birthday (XXXXXX)");
+            errorMessage.setText("Please Enter Number As: (XXXXXX)");
             return;
         }
-
+    	
     	boolean found;
-    	found = searchPatient(First, Last, birthday);
-
+    	found = searchPatient(First, Last, BirthdayNum);
+    	
     	if(found) {
-    		root = FXMLLoader.load(getClass().getResource("PatientScene3.fxml"));
+    		// set up next page 
+    		String fullName = patientFirst.getText() + " " + patientLast.getText();
+    		
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientScene3.fxml"));
+    		root = loader.load();   		
+    		PatientInfoController2 info = loader.getController();
+    		  
+    		info.welcomeName(fullName);
+    		
+    		//go through text file and get info 
+    		@SuppressWarnings("resource")
+			Scanner fileReader = new Scanner(new File("PatientData.txt")).useDelimiter("\t"); 
+        	for (int i = 0; i < patientIndex; i++)
+        	{
+        		if(fileReader.hasNextLine())
+        		{
+        			fileReader.nextLine();
+        		}
+        	}
+        	
+        	String tempF = fileReader.next("[\\S ]+");
+        	String tempL = fileReader.next("[\\S ]+");
+        	String tempB = fileReader.next("[\\S ]+");
+        	String tempAddr = fileReader.next("[\\S ]+");
+        	String tempPn = fileReader.next("[\\S ]+");
+        	String tempE = fileReader.next("[\\S ]+");
+        	String tempPcn = fileReader.next("[\\S ]+");
+        	String tempR = fileReader.next("[\\S ]+");
+        	String tempCn = fileReader.next("[\\S ]+");
+        	String tempI = fileReader.next("[\\S ]+");
+        	String tempM = fileReader.next("[\\S ]+");
+        	String tempGn = fileReader.next("[\\S ]+");
+        	
+        	fileReader.close();
+        	
+        	// update fields 
+    		info.setUpInputs(tempF, tempL, tempB, tempAddr, tempPn, tempE, tempPcn, tempR, tempCn, tempI, tempM, tempGn);
+    		
+    		//pass in patient index
+    		info.patientNum(patientIndex);
+    		
+    		//root = FXMLLoader.load(getClass().getResource("PatientScene3.fxml"));		DO NOT USE
     		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         	scene = new Scene(root);
         	stage.setScene(scene);
         	stage.show();
+        	
     	}
-
     	else {
+    		errorMessage.setText("Invalid Patient Login");
     		return;
     	}
     }
@@ -124,6 +200,26 @@ public class PatientInfoController {
     }
 
     public void finishSignUp(ActionEvent event) throws IOException {
+    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("PatientData.txt", true)))
+    	{
+    		bf.newLine();
+    		bf.write(patientFirst.getText().toString() + "\t");
+    		bf.write(patientLast.getText().toString() + "\t");
+    		bf.write(patientBirth.getText().toString() + "\t");
+    		bf.write(patientAddr.getText().toString() + "\t");
+    		bf.write(patientNum.getText().toString() + "\t");
+    		bf.write(patientEmail.getText().toString() + "\t");
+    		bf.write(patientPCN.getText().toString() + "\t");
+    		bf.write(patientRelation.getText().toString() + "\t");
+    		bf.write(patientCN.getText().toString() + "\t");
+    		bf.write(patientInsurance.getText().toString() + "\t");
+    		bf.write(patientMemId.getText().toString() + "\t");
+    		bf.write(patientGN.getText().toString() + "\t");
+    	}
+    	catch (IOException ex)
+    	{
+    		
+    	}
         root = FXMLLoader.load(getClass().getResource("PatientScene1.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -131,12 +227,56 @@ public class PatientInfoController {
         stage.show();
     }
 
-    public boolean searchPatient(String First, String Last, Integer Birthday) throws IOException{
-    	if(First.equals("Yuan") && Last.equals("Bo") && Birthday == 0000000)
-    		return true;
-    	else
-    		errorMessage.setText("Patient does not exist");
-    		return false;
+    public boolean searchPatient(String First, String Last, String Birthday) throws IOException{
+    	boolean flag = false;
+    	
+    	Scanner fileReader = new Scanner(new File("PatientData.txt")); 
+    	
+    	while(fileReader.hasNextLine())
+    	{
+    		//grab first name string
+    		String compF = fileReader.next("[\\S ]+");
+    		//System.out.println("sc is: " + compF);
+    		if(compF.equals(First))// && sc.next().equals(Last) && sc.next().equals(Birthday.toString()))
+    		{
+    			//grab last name string
+    			String compL = fileReader.next("[\\S ]+");
+    			//System.out.println("sc is: " + compL);
+    			if (compL.equals(Last)) 
+    			{
+    				// grab birthday string
+    				String compB = fileReader.next("[\\S ]+");
+        			//System.out.println("sc is: " + compB);
+        			if (compB.equals(Birthday.toString()))
+        			{
+        				// if everything equals, flag is true
+        				flag = true;
+            			break;
+        			}
+        			else //go to next patient
+        			{
+        				fileReader.nextLine();
+        				patientIndex++;
+        			} 				
+    			}
+    			else //go to next patient
+    			{
+    				fileReader.nextLine();
+    				patientIndex++;
+    			}
+    		}
+    		else //go to next patient
+    		{
+    			fileReader.nextLine();
+    			patientIndex++;
+    		}
+    		//System.out.println("flag is " + flag);
+    	}
+    	
+    	fileReader.close();
+    	
+    	
+    	return flag;
     }
 
 }
