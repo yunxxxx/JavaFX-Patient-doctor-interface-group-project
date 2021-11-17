@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientInfoController2">
+   <children>
+      <Label fx:id="welcome" layoutX="14.0" layoutY="14.0" text="Welcome Patient XXX">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TabPane layoutX="14.0" layoutY="53.0" prefHeight="340.0" prefWidth="575.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Personal">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="575.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="6.0" text="**Changed fields will be updated, do not add additional spaces**" textFill="RED" />
+                        <Label layoutX="6.0" layoutY="23.0" text="First Name:" />
+                        <Label layoutX="6.0" layoutY="47.0" text="Last Name:" />
+                        <Label layoutX="4.0" layoutY="73.0" text="Date of Birth:" />
+                        <Label layoutX="6.0" layoutY="97.0" text="Address:" />
+                        <Label layoutX="6.0" layoutY="121.0" text="Phone Number:" />
+                        <Label layoutX="6.0" layoutY="145.0" text="Email:" />
+                        <Label layoutX="5.0" layoutY="170.0" text="Primary Contact Name:" />
+                        <Label layoutX="25.0" layoutY="194.0" text="Relation to Patient:" />
+                        <Label layoutX="26.0" layoutY="219.0" text="Contact Number:" />
+                        <Label layoutX="7.0" layoutY="242.0" text="Insurance Provider:" />
+                        <Label layoutX="25.0" layoutY="263.0" text="Member ID:" />
+                        <Label layoutX="24.0" layoutY="284.0" text="Group Number:" />
+                        <TextField fx:id="savedFirst" layoutX="87.0" layoutY="22.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="161.0" />
+                        <TextField fx:id="savedLast" layoutX="84.0" layoutY="46.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedBirth" layoutX="92.0" layoutY="72.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedAddr" layoutX="72.0" layoutY="96.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedNum" layoutX="114.0" layoutY="120.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedEmail" layoutX="52.0" layoutY="144.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedPCN" layoutX="156.0" layoutY="169.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedRelation" layoutX="148.0" layoutY="193.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedCN" layoutX="136.0" layoutY="218.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedInsurance" layoutX="136.0" layoutY="241.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedMemId" layoutX="110.0" layoutY="262.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <TextField fx:id="savedGN" layoutX="126.0" layoutY="283.0" minHeight="-Infinity" prefHeight="20.0" />
+                        <Button layoutX="448.0" layoutY="27.0" mnemonicParsing="false" onAction="#saveChange" text="Save Changes" />
+                        <Button layoutX="448.0" layoutY="68.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Previous Visits">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Previous Visit Dates:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Contact">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="8.0" layoutY="11.0" text="Select Contact:" />
+                        <Label layoutX="6.0" layoutY="66.0" text=" Subject:" />
+                        <TextField fx:id="subject" layoutX="10.0" layoutY="83.0" prefWidth="550.0" />
+                        <Label layoutX="3.0" layoutY="115.0" text="Message:" />
+                        <TextArea fx:id="message" layoutX="10.0" layoutY="132.0" prefHeight="133.0" prefWidth="550.0" />
+                        <RadioButton layoutX="7.0" layoutY="34.0" mnemonicParsing="false" text="Doctor XXX" />
+                        <RadioButton layoutX="119.0" layoutY="34.0" mnemonicParsing="false" text="Nurse XXX" />
+                        <Button layoutX="249.0" layoutY="280.0" mnemonicParsing="false" onAction="#sendMessage" text="Send" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Messages">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Previous Messages:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
