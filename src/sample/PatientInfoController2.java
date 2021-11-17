@@ -60,13 +60,13 @@ public class PatientInfoController2 {
     }
     
 
-    public void setUpInputs(String f, String l, String b, String addr, String pn, String e, String pcn, String r, String cn, String i, String m, String gn)
+    public void setUpInputs(String f, String l, String b, String addr, String num, String e, String pcn, String r, String cn, String i, String m, String gn)
     {
     	savedFirst.setText(f);
     	savedLast.setText(l);
     	savedBirth.setText(b);
     	savedAddr.setText(addr);
-    	savedNum.setText(pn);
+    	savedNum.setText(num);
     	savedEmail.setText(e);
     	savedPCN.setText(pcn);
     	savedRelation.setText(r);
@@ -181,7 +181,8 @@ public class PatientInfoController2 {
     	if (searchPatient(savedFirst.getText().toString(), savedLast.getText().toString(), savedBirth.getText().toString()))
     	{
     		int index =  updatePatientNum;  
-    		Scanner fileReader = new Scanner(new File("PatientData.txt")); 
+    		@SuppressWarnings("resource")
+			Scanner fileReader = new Scanner(new File("PatientData.txt")).useDelimiter("\t"); 
         	for (int i = 0; i < updatePatientNum-1; i++)
         	{
         		if(fileReader.hasNextLine())
@@ -190,9 +191,23 @@ public class PatientInfoController2 {
         		}
         	}
         	fileReader.nextLine();
-       	
-        	String newInfo = fileReader.nextLine() + 
-        						"Subject: " + subject.getText().toString() + "\tMessage: " + message.getText().toString() + "\t";
+        	
+        	int numInputs = 12;
+        	int i = 0; 
+        	String rewrite = "";
+        	while(i < numInputs)
+        	{
+        		System.out.println(i);
+        		String text = fileReader.next("[\\S ]+");
+        		rewrite = rewrite + text + "\t";
+        		i++;
+        	}
+        	
+        	rewrite = rewrite + "Subject: " + subject.getText().toString() + "\tMessage: " + message.getText().toString() + "\t";
+        	
+        	
+//        	String newInfo = fileReader.nextLine() + 
+//        						"Subject: " + subject.getText().toString() + "\tMessage: " + message.getText().toString() + "\t";
         	
         	//remove patient info
 //        	if(index == 1)
@@ -204,7 +219,7 @@ public class PatientInfoController2 {
         	//add in new info to text file
         	try(BufferedWriter bf = new BufferedWriter(new FileWriter("PatientData.txt", true)))
         	{
-        		bf.write(newInfo);
+        		bf.write(rewrite);
         	}
         	catch (IOException ex)
         	{

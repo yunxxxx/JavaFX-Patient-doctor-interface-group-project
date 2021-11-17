@@ -8,66 +8,40 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.*;
 
-
 public class PatientInfoController {
+	
     @FXML
     TextField patientFirst;
-
     @FXML
-    TextField patientLast;
-
+    TextField patientLast; 
     @FXML
-    TextField patientBirth;
-    
+    TextField patientBirth;   
     @FXML
     TextField patientAddr;   
-    
     @FXML
     TextField patientNum;  
-    
     @FXML
-    TextField patientEmail; 
-    
+    TextField patientEmail;  
     @FXML
     TextField patientPCN;
-    
     @FXML
     TextField patientRelation;
-    
     @FXML
     TextField patientCN;
-    
     @FXML
     TextField patientInsurance;
-    
     @FXML
     TextField patientMemId;
-    
     @FXML
     TextField patientGN;
-
-    @FXML
-    TextField patientWeight;
-
-    @FXML
-    TextField patientHeight;
-
-    @FXML
-    TextField patientBodyTemp;
-
-    @FXML
-    TextField patientBloodPressure;
-
     @FXML
     Label errorMessage;
-
     @FXML
     Label patientName;
 
@@ -79,31 +53,39 @@ public class PatientInfoController {
     
     private int patientIndex = 1;
     
-//     public void newPatient() throws IOException {
+    public void getAddr(String first, String last, String Birth) throws IOException
+    {
+    	patientIndex = 1; 
+    	Scanner fileReader = new Scanner(new File("PatientData.txt")).useDelimiter("\t"); 
+    	if (searchPatient(first, last, Birth))
+    	{
+    		for(int i = 0; i < 4; i++)
+    		{
+    			if(fileReader.hasNextLine())
+        		{
+        			fileReader.nextLine();
+        		}
+    		}
+    		
+    		System.out.println(fileReader.next("[\\S ]+"));
+    	}
+    	fileReader.close();
+    	
+    }
+    
+    
+    public void newPatient() throws IOException {
         
-//     }
+    }
+ 
 
     public void displayPatient(String First, String Last, Integer Birthday) {
         this.Birthday = Birthday;
-        patientName.setText("Enter " + First + " " + Last + "'s basic information");
+        patientName.setText("Enter" + First + " " + Last + "'s basic information");
     }
 
     public void enterHealth4(ActionEvent event) throws IOException {
-    	String weight = patientWeight.getText();
-    	String height = patientHeight.getText();
-    	String bt = patientBodyTemp.getText();
-    	String bp = patientBloodPressure.getText();
-
-    	FileWriter nurseInfo = new FileWriter("nurseinfo.txt", true);
-    	nurseInfo.write(weight + " ");
-    	nurseInfo.write(height + " ");
-    	nurseInfo.write(bt + " ");
-    	nurseInfo.write(bp + "\n");
-    	nurseInfo.close();
-
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene4.fxml"));
-    	root = loader.load();
-   //   root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
+        root = FXMLLoader.load(getClass().getResource("HealthScene4.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -151,7 +133,7 @@ public class PatientInfoController {
         	String tempL = fileReader.next("[\\S ]+");
         	String tempB = fileReader.next("[\\S ]+");
         	String tempAddr = fileReader.next("[\\S ]+");
-        	String tempPn = fileReader.next("[\\S ]+");
+        	String tempNum = fileReader.next("[\\S ]+");
         	String tempE = fileReader.next("[\\S ]+");
         	String tempPcn = fileReader.next("[\\S ]+");
         	String tempR = fileReader.next("[\\S ]+");
@@ -163,7 +145,7 @@ public class PatientInfoController {
         	fileReader.close();
         	
         	// update fields 
-    		info.setUpInputs(tempF, tempL, tempB, tempAddr, tempPn, tempE, tempPcn, tempR, tempCn, tempI, tempM, tempGn);
+    		info.setUpInputs(tempF, tempL, tempB, tempAddr, tempNum, tempE, tempPcn, tempR, tempCn, tempI, tempM, tempGn);
     		
     		//pass in patient index
     		info.patientNum(patientIndex);
@@ -189,8 +171,8 @@ public class PatientInfoController {
         stage.setScene(scene);
         stage.show();
     }
-
-
+    
+    
     public void signUp(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PatientScene2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -198,8 +180,9 @@ public class PatientInfoController {
         stage.setScene(scene);
         stage.show();
     }
-
+    
     public void finishSignUp(ActionEvent event) throws IOException {
+    	
     	try(BufferedWriter bf = new BufferedWriter(new FileWriter("PatientData.txt", true)))
     	{
     		bf.newLine();
@@ -215,18 +198,24 @@ public class PatientInfoController {
     		bf.write(patientInsurance.getText().toString() + "\t");
     		bf.write(patientMemId.getText().toString() + "\t");
     		bf.write(patientGN.getText().toString() + "\t");
+    		bf.write("No Subject Line \t");
+    		bf.write("No Message \t");
+    		
+    		
     	}
     	catch (IOException ex)
     	{
     		
     	}
+    	
+    	
         root = FXMLLoader.load(getClass().getResource("PatientScene1.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
+    
     public boolean searchPatient(String First, String Last, String Birthday) throws IOException{
     	boolean flag = false;
     	
@@ -278,6 +267,9 @@ public class PatientInfoController {
     	
     	return flag;
     }
+    
+
+
 
 }
 
