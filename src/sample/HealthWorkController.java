@@ -12,8 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class HealthWorkController {
 
@@ -39,16 +42,16 @@ public class HealthWorkController {
     TextArea patientNote;
 
     @FXML
-    TextArea doctorPTR;
-
-    @FXML
-    TextArea doctorMN;
-
-    @FXML
-    TextArea doctorNote;
-
-    @FXML
     Label errorMessage;
+
+    @FXML
+    TextArea PreviousHealthIssues;
+
+    @FXML
+    TextArea PreviousPrescribedMed;
+
+    @FXML
+    TextArea ImmunicationHistory;
 
     private Stage stage;
     private Scene scene;
@@ -57,7 +60,11 @@ public class HealthWorkController {
     private int workNum;
     private String First;
     private String Last;
+    private String BirthdayNum;
+    private Integer birthNum;
     private char N_or_D;
+
+    private int patientIndex = 1;
 
     public void displayName(Integer employeeID, char N_or_D, String First, String Last) throws IOException {
         this.workNum = employeeID;
@@ -80,20 +87,19 @@ public class HealthWorkController {
     }
 
     public void lookingForPatient(ActionEvent event) throws IOException {
-        String First = FirstName.getText();
-        String Last = LastName.getText();
-        String BirthdayNum = Birthday.getText();
+        this.First = FirstName.getText();
+        this.Last = LastName.getText();
+        this.BirthdayNum = Birthday.getText();
 
-        Integer BirthdayID;
         try {
-            BirthdayID = Integer.parseInt(BirthdayNum);
+            birthNum = Integer.parseInt(BirthdayNum);
         } catch (NumberFormatException e) {
             errorMessage.setText("Please Enter a Number at the birthday");
             return;
         }
 
         //just use Yuan Bo 000000 as an example patient for now
-        if (!BirthdayID.equals(000000) && !First.equals("Yuan") && !Last.equals("Bo")) {
+        if (!searchPatient(First, Last, BirthdayNum)) {
             errorMessage.setText("Couldn't find the patient");
             return;
         }
@@ -102,11 +108,12 @@ public class HealthWorkController {
             FileWriter nurseInfo = new FileWriter("nurseinfo.txt", true);
             nurseInfo.write(First + "\n");
             nurseInfo.write(Last + "\n");
+            nurseInfo.write(BirthdayNum + "\n");
             nurseInfo.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene3.fxml"));
             root = loader.load();
             PatientInfoController patientInfoController = loader.getController();
-            patientInfoController.displayPatient(First, Last, BirthdayID);
+            patientInfoController.displayPatient(First, Last, birthNum);
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -117,7 +124,12 @@ public class HealthWorkController {
             doctorInfo.write(First + "\n");
             doctorInfo.write(Last + "\n");
             doctorInfo.close();
-            root = FXMLLoader.load(getClass().getResource("HealthScene5.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HealthScene5.fxml"));
+            root = loader.load();
+            HealthWorkController2 healthWorkController2 = loader.getController();
+            healthWorkController2.displayInfo(First, Last, BirthdayNum);
+
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -134,27 +146,76 @@ public class HealthWorkController {
     }
 
     public void recordInformation(ActionEvent event) throws IOException {
+
+        String previousHealthIssues = PreviousHealthIssues.getText();
+        String previousPrescribedMed = PreviousPrescribedMed.getText();
+        String immunicationHistory = ImmunicationHistory.getText();
+
         String allergies = patientAllergies.getText();
         String healthConcerns = patientHealthConcerns.getText();
         String note = patientNote.getText();
 
         FileWriter nurseInfo = new FileWriter("nurseinfo.txt", true);
+        nurseInfo.write(previousHealthIssues + "\n");
+        nurseInfo.write(previousPrescribedMed + "\n");
+        nurseInfo.write(immunicationHistory + "\n");
         nurseInfo.write(allergies + "\n");
         nurseInfo.write(healthConcerns + "\n");
         nurseInfo.write(note + "\n");
         nurseInfo.close();
     }
 
-    public void doctorRecordInformation(ActionEvent event) throws IOException {
-        String ptr = doctorPTR.getText();
-        String mn = doctorMN.getText();
-        String dnote = doctorNote.getText();
 
-        FileWriter doctorInfo = new FileWriter("doctorinfo.txt", true);
-        doctorInfo.write(ptr + "\n");
-        doctorInfo.write(mn + "\n");
-        doctorInfo.write(dnote + "\n");
-        doctorInfo.close();
+    public boolean searchPatient(String First, String Last, String Birthday) throws IOException{
+        boolean flag = false;
+
+        Scanner fileReader = new Scanner(new File("PatientData.txt"));
+
+        while(fileReader.hasNextLine())
+        {
+            //grab first name string
+            String compF = fileReader.next("[\\S ]+");
+            //System.out.println("sc is: " + compF);
+            if(compF.equals(First))// && sc.next().equals(Last) && sc.next().equals(Birthday.toString()))
+            {
+                //grab last name string
+                String compL = fileReader.next("[\\S ]+");
+                //System.out.println("sc is: " + compL);
+                if (compL.equals(Last))
+                {
+                    // grab birthday string
+                    String compB = fileReader.next("[\\S ]+");
+                    //System.out.println("sc is: " + compB);
+                    if (compB.equals(Birthday.toString()))
+                    {
+                        // if everything equals, flag is true
+                        flag = true;
+                        break;
+                    }
+                    else //go to next patient
+                    {
+                        fileReader.nextLine();
+                        patientIndex++;
+                    }
+                }
+                else //go to next patient
+                {
+                    fileReader.nextLine();
+                    patientIndex++;
+                }
+            }
+            else //go to next patient
+            {
+                fileReader.nextLine();
+                patientIndex++;
+            }
+            //System.out.println("flag is " + flag);
+        }
+
+        fileReader.close();
+
+
+        return flag;
     }
 
 }
