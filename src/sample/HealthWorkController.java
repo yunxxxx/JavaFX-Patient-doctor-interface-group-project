@@ -147,13 +147,13 @@ public class HealthWorkController {
 
     public void recordInformation(ActionEvent event) throws IOException {
 
-        String previousHealthIssues = PreviousHealthIssues.getText();
-        String previousPrescribedMed = PreviousPrescribedMed.getText();
-        String immunicationHistory = ImmunicationHistory.getText();
-
         String allergies = patientAllergies.getText();
         String healthConcerns = patientHealthConcerns.getText();
         String note = patientNote.getText();
+
+        String previousHealthIssues = PreviousHealthIssues.getText();
+        String previousPrescribedMed = PreviousPrescribedMed.getText();
+        String immunicationHistory = ImmunicationHistory.getText();
 
         FileWriter nurseInfo = new FileWriter("nurseinfo.txt", true);
         nurseInfo.write(previousHealthIssues + "\n");

@@ -15,11 +15,11 @@
             </font>
         </Label>
         <Label layoutX="16.0" layoutY="41.0" text="previous health issues:" />
-        <TextArea layoutX="16.0" layoutY="60.0" prefHeight="75.0" prefWidth="157.0" />
+        <TextArea fx:id="PreviousHealthIssues" layoutX="16.0" layoutY="60.0" prefHeight="75.0" prefWidth="157.0" />
         <Label layoutX="185.0" layoutY="41.0" text="previously prescribed medications:" />
-        <TextArea layoutX="185.0" layoutY="60.0" prefHeight="75.0" prefWidth="183.0" />
+        <TextArea fx:id="PreviousPrescribedMed" layoutX="185.0" layoutY="60.0" prefHeight="75.0" prefWidth="183.0" />
         <Label layoutX="402.0" layoutY="41.0" text="history of immunication:" />
-        <TextArea layoutX="402.0" layoutY="60.0" prefHeight="75.0" prefWidth="170.0" />
+        <TextArea fx:id="ImmunicationHistory" layoutX="402.0" layoutY="60.0" prefHeight="75.0" prefWidth="170.0" />
         <Label layoutX="16.0" layoutY="142.0" text="Enter the infomation below:">
             <font>
                 <Font size="18.0" />

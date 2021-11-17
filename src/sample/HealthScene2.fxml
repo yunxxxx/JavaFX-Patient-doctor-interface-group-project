@@ -40,6 +40,5 @@
         <Button layoutX="203.0" layoutY="327.0" mnemonicParsing="false" onAction="#lookingForPatient" text="Enter" />
         <Label fx:id="errorMessage" layoutX="175.0" layoutY="179.0" textFill="#f50a0a" />
         <Button layoutX="13.0" layoutY="340.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-      <Label layoutX="353.0" layoutY="89.0" text="Sample patient: Yuan Bo 000000" textFill="#eb0707" />
     </children>
 </AnchorPane>
